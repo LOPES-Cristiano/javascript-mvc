@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema MVC - Produtos e Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Gerenciamento</h1>
+            <nav id="navigation">
+                <button id="loginBtn" class="nav-btn">Login</button>
+                <button id="logoutBtn" class="nav-btn hidden">Logout</button>
+                <span id="userInfo" class="user-info hidden"></span>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Tela de Login -->
+            <section id="loginSection" class="section">
+                <div class="form-container">
+                    <h2>Login</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="username">Usuário:</label>
+                            <input type="text" id="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha:</label>
+                            <input type="password" id="password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Entrar</button>
+                    </form>
+                    <div id="loginMessage" class="message"></div>
+                </div>
+            </section>
+
+            <!-- Tela de Produtos -->
+            <section id="productsSection" class="section hidden">
+                <div class="products-container">
+                    <h2>Gerenciamento de Produtos</h2>
+                    
+                    <!-- Formulário de Cadastro -->
+                    <div class="form-container">
+                        <h3>Cadastrar Produto</h3>
+                        <form id="productForm">
+                            <div class="form-group">
+                                <label for="productName">Nome:</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Preço:</label>
+                                <input type="number" id="productPrice" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="productCategory">Categoria:</label>
+                                <select id="productCategory" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="eletronicos">Eletrônicos</option>
+                                    <option value="roupas">Roupas</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="livros">Livros</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-primary">Cadastrar Produto</button>
+                        </form>
+                        <div id="productMessage" class="message"></div>
+                    </div>
+
+                    <!-- Lista de Produtos -->
+                    <div class="products-list">
+                        <h3>Produtos Cadastrados</h3>
+                        <div id="productsList" class="products-grid"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Diagrama da Arquitetura MVC -->
+        <section id="architectureSection" class="section">
+            <div class="diagram-container">
+                <h2>Arquitetura MVC do Sistema</h2>
+                <div class="mvc-diagram">
+                    <div class="mvc-layer view-layer">
+                        <h3>VIEW (Visão)</h3>
+                        <div class="layer-content">
+                            <p><strong>Responsabilidades:</strong></p>
+                            <ul>
+                                <li>Interface do usuário</li>
+                                <li>Formulários de login e produtos</li>
+                                <li>Exibição de dados</li>
+                                <li>Captura de eventos</li>
+                            </ul>
+                            <p><strong>Componentes:</strong></p>
+                            <ul>
+                                <li>LoginView</li>
+                                <li>ProductView</li>
+                                <li>HTML/CSS</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mvc-arrows">
+                        <div class="arrow view-to-controller">
+                            <span>Eventos do usuário</span>
+                            <div class="arrow-line">→</div>
+                        </div>
+                        <div class="arrow controller-to-view">
+                            <div class="arrow-line">←</div>
+                            <span>Atualiza interface</span>
+                        </div>
+                    </div>
+
+                    <div class="mvc-layer controller-layer">
+                        <h3>CONTROLLER (Controlador)</h3>
+                        <div class="layer-content">
+                            <p><strong>Responsabilidades:</strong></p>
+                            <ul>
+                                <li>Processa requisições</li>
+                                <li>Coordena View e Model</li>
+                                <li>Lógica de controle</li>
+                                <li>Validações</li>
+                            </ul>
+                            <p><strong>Componentes:</strong></p>
+                            <ul>
+                                <li>AuthController</li>
+                                <li>ProductController</li>
+                                <li>AppController</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mvc-arrows">
+                        <div class="arrow controller-to-model">
+                            <span>Manipula dados</span>
+                            <div class="arrow-line">→</div>
+                        </div>
+                        <div class="arrow model-to-controller">
+                            <div class="arrow-line">←</div>
+                            <span>Retorna dados</span>
+                        </div>
+                    </div>
+
+                    <div class="mvc-layer model-layer">
+                        <h3>MODEL (Modelo)</h3>
+                        <div class="layer-content">
+                            <p><strong>Responsabilidades:</strong></p>
+                            <ul>
+                                <li>Gerencia dados</li>
+                                <li>Regras de negócio</li>
+                                <li>Persistência</li>
+                                <li>Validações de dados</li>
+                            </ul>
+                            <p><strong>Componentes:</strong></p>
+                            <ul>
+                                <li>User (modelo)</li>
+                                <li>Product (modelo)</li>
+                                <li>Database simulation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interaction-flow">
+                    <h3>Fluxo de Interações</h3>
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <span class="step-number">1</span>
+                            <p>Usuário interage com a <strong>View</strong> (clica, digita, submete formulário)</p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="step-number">2</span>
+                            <p><strong>Controller</strong> recebe o evento e processa a requisição</p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="step-number">3</span>
+                            <p><strong>Controller</strong> interage com o <strong>Model</strong> para manipular dados</p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="step-number">4</span>
+                            <p><strong>Model</strong> processa e retorna os dados para o <strong>Controller</strong></p>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-step">
+                            <span class="step-number">5</span>
+                            <p><strong>Controller</strong> atualiza a <strong>View</strong> com os novos dados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="models/User.js"></script>
+    <script src="models/Product.js"></script>
+    <script src="views/LoginView.js"></script>
+    <script src="views/ProductView.js"></script>
+    <script src="controllers/AuthController.js"></script>
+    <script src="controllers/ProductController.js"></script>
+    <script src="controllers/AppController.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
